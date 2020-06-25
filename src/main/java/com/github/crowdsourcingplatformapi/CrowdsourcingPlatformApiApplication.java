@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CrowdsourcingPlatformApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CrowdsourcingPlatformApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CrowdsourcingPlatformApiApplication.class, args);
+    }
 
 }
