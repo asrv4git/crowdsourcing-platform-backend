@@ -1,4 +1,4 @@
-package com.github.crowdsourcingplatformapi.entity;
+package com.github.crowdsourcingplatformapi.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
