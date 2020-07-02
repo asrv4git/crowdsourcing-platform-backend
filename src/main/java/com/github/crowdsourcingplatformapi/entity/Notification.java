@@ -16,7 +16,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="Notification")
+@Entity(name = "Notification")
 public class Notification {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -32,20 +32,20 @@ public class Notification {
     @Column(name = "message")
     private String message;
 
-    @Column(name= "url")
+    @Column(name = "url")
     private URL Uri;
 
-    @Column(name= "seen_status")
+    @Column(name = "seen_status")
     private boolean seen;
 
-    @Column(name= "created_at")
+    @Column(name = "created_at")
     @NotNull
     private LocalDateTime createdAt;
 
-    @Column(name= "type")
+    @Column(name = "type")
     private String type;
 
-    @Column(name= "task_id")
+    @Column(name = "task_id")
     @NotBlank
     private UUID taskId;
 }

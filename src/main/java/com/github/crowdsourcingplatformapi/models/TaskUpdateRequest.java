@@ -1,11 +1,7 @@
 package com.github.crowdsourcingplatformapi.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;

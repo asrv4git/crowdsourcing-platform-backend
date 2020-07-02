@@ -16,42 +16,36 @@ import java.util.UUID;
 @Entity(name = "Submission_Info")
 public class SubmissionInfo {
 
-    public enum SubmissionStatus {
-        AvaitingReview, Accepted, Rejected
-    }
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "submission_id", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
     private UUID id;
-
     @Column(name = "user_id")
     @NotBlank
     private UUID userId;
-
     @Column(name = "task_id")
     @NotBlank
     private UUID taskId;
-
     //    Comments added by the submitter
     @Column(name = "comments", columnDefinition = "text")
     @NotEmpty
     private String comments;
-
     @Column(name = "submission_status")
     @Enumerated(EnumType.STRING)
     @NotNull
     private SubmissionStatus submissionStatus;
-
     @Column(name = "submission_created_at")
     @NotNull
     private LocalDate createdAt;
-
     //    Review submitted by the requester
     @Column(name = "review", columnDefinition = "text")
     @NotEmpty
     private String review;
+
+    public enum SubmissionStatus {
+        AvaitingReview, Accepted, Rejected
+    }
 
 }

@@ -1,6 +1,8 @@
 package com.github.crowdsourcingplatformapi.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotNull;
@@ -14,9 +16,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TaskModel {
 
-    public enum TaskStatus{
-        Idle, InProgress, AvaitingReview, Finished
-    }
     @NotNull
     private String title;
     @NotNull
@@ -34,11 +33,15 @@ public class TaskModel {
     private Map<String, String> taskDescription;
     @NotNull
     private Integer timeToComplete;
-//    taskId
+    //    taskId
     private UUID id;
-//  user who created this task
+    //  user who created this task
     private UUID userId;
     private TaskStatus status;
-//  Comes from UserRegistration table (latest entry for this task)
+    //  Comes from UserRegistration table (latest entry for this task)
     private UUID currentWorkerId;
+
+    public enum TaskStatus {
+        Idle, InProgress, AvaitingReview, Finished
+    }
 }
