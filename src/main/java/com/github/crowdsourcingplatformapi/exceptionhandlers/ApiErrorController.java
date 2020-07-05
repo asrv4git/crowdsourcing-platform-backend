@@ -1,3 +1,4 @@
+/*
 package com.github.crowdsourcingplatformapi.exceptionhandlers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,44 +21,50 @@ import java.util.Map;
 
 import static org.springframework.boot.web.error.ErrorAttributeOptions.Include.*;
 
+*/
 /**
  * Used for handling exceptions that can't be handled by
- * <code>CustomExceptionHandlerControllerAdvice</code>,
+ * <code>ExceptionHandlerControllerAdvice</code>,
  * e.g. exceptions thrown in filters.
- */
+ * <p>
+ * Overrides the base method to add our custom logic
+ *//*
+
 @Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")
-public class CustomErrorController extends AbstractErrorController {
+public class ApiErrorController extends AbstractErrorController {
 
-    private static final Log log = LogFactory.getLog(CustomErrorController.class);
+    private static final Log log = LogFactory.getLog(ApiErrorController.class);
 
-    public CustomErrorController(ErrorAttributes errorAttributes) {
+    public ApiErrorController(ErrorAttributes errorAttributes) {
         super(errorAttributes);
     }
 
-    /**
-     * Overrides the base method to add our custom logic
-     */
+    */
+/**
+ * Overrides the base method to add our custom logic
+ *//*
+
     @RequestMapping(produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
         Map<String, Object> body = this.getErrorAttributes(request,
                 ErrorAttributeOptions.of(EXCEPTION, BINDING_ERRORS, STACK_TRACE, MESSAGE));
 
         int statusCode = (int) body.get("status");
+        String message = ApiErrorResponseUtil.getErrorResponseMessage(statusCode);
+        if(message==null){
+            if ((body.get("message") != "No message available"))
+                message = ((String) body.get("message")).concat(" ");
 
-        String message = "";
-
-        if ((body.get("message") != "No message available"))
-            message = ((String) body.get("message")).concat(" ");
-
-        else if (body.get("error") != null)
-            message = message.concat(((String) body.get("error")).concat(" "));
-
-        log.debug(body.get("exception") + ", occurred at path: " + body.get("path"));
-        log.trace(body.get("trace"));
+            else if (body.get("error") != null)
+                message = message.concat(((String) body.get("error")).concat(" "));
+        }
+        log.error(body.get("exception") + ", occurred at path: " + body.get("path"));
+        log.debug(body.get("trace"));
 
         ErrorObject errorObject = new ErrorObject(statusCode, message.trim());
         body = new ObjectMapper().convertValue(errorObject, Map.class);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -69,3 +76,4 @@ public class CustomErrorController extends AbstractErrorController {
         return "${server.error.path:${error.path:/error}}";
     }
 }
+*/

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class BeansDefinations {
+public class BeansDefinitions {
     @Bean
     public Map<String, String> getDescription() {
         Map<String, String> description = new HashMap();

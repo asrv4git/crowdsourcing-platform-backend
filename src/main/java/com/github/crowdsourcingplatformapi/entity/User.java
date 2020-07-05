@@ -35,7 +35,7 @@ public class User {
     @Column(name = "points")
     private int points;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "skills")
     @NotEmpty
     private List<String> skills = new ArrayList();
