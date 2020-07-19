@@ -1,4 +1,4 @@
-package com.github.crowdsourcingplatformapi.entity;
+package com.github.crowdsourcingplatformapi.models.entity;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,7 +31,7 @@ public class User {
     @NotBlank(message = "Email is mandatory")
     private String email;
 
-    //    Current point balance of the user
+    //    Current point balance of the user initialised with 0 points
     @Column(name = "points")
     private int points;
 

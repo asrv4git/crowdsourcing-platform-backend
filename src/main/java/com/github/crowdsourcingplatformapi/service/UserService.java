@@ -1,15 +1,18 @@
 package com.github.crowdsourcingplatformapi.service;
 
-import com.github.crowdsourcingplatformapi.entity.User;
+import com.github.crowdsourcingplatformapi.models.entity.User;
 import com.github.crowdsourcingplatformapi.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -52,5 +55,26 @@ public class UserService {
         log.info("Users with mandatory skills: " + userList2.size());
         userList2.stream().forEach(System.out::println);
         return userList2;
+    }
+
+    public User findUserById(UUID userId) {
+        Optional<User> userOptional =userRepository.findById(userId);
+        if(userOptional.isPresent())
+            return userOptional.get();
+        else{
+            log.debug("No such user with id: "+userId);
+            return null;
+        }
+    }
+
+    public User updateSkillsForTheUserWithId(UUID userId, List<String> skills) {
+        User user = this.findUserById(userId);
+        if(user==null)
+            return null;
+        else{
+            user.setSkills(skills);
+            return userRepository.saveAndFlush(user);
+        }
+
     }
 }

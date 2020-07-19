@@ -1,4 +1,4 @@
-package com.github.crowdsourcingplatformapi.entity;
+package com.github.crowdsourcingplatformapi.models.entity;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;

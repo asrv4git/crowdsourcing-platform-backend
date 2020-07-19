@@ -1,6 +1,6 @@
 package com.github.crowdsourcingplatformapi.repository;
 
-import com.github.crowdsourcingplatformapi.entity.User;
+import com.github.crowdsourcingplatformapi.models.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

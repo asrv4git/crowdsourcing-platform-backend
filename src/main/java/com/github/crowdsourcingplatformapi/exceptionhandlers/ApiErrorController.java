@@ -1,4 +1,3 @@
-/*
 package com.github.crowdsourcingplatformapi.exceptionhandlers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,15 +20,13 @@ import java.util.Map;
 
 import static org.springframework.boot.web.error.ErrorAttributeOptions.Include.*;
 
-*/
-/**
+/*
  * Used for handling exceptions that can't be handled by
  * <code>ExceptionHandlerControllerAdvice</code>,
  * e.g. exceptions thrown in filters.
  * <p>
  * Overrides the base method to add our custom logic
- *//*
-
+ */
 @Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")
 public class ApiErrorController extends AbstractErrorController {
@@ -40,10 +37,6 @@ public class ApiErrorController extends AbstractErrorController {
         super(errorAttributes);
     }
 
-    */
-/**
- * Overrides the base method to add our custom logic
- *//*
 
     @RequestMapping(produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
@@ -76,4 +69,4 @@ public class ApiErrorController extends AbstractErrorController {
         return "${server.error.path:${error.path:/error}}";
     }
 }
-*/
+
