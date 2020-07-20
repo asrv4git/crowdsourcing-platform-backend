@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -27,6 +28,7 @@ import static org.springframework.boot.web.error.ErrorAttributeOptions.Include.*
  * <p>
  * Overrides the base method to add our custom logic
  */
+@ApiIgnore
 @Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")
 public class ApiErrorController extends AbstractErrorController {

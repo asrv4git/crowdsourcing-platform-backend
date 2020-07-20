@@ -5,12 +5,10 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -25,7 +23,7 @@ public class Task {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "user_id", updatable = false, nullable = false)
+    @Column(name = "task_id", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
     private UUID id;
 
@@ -45,10 +43,15 @@ public class Task {
     private Boolean isActive;
 
     @NotNull
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Column(name = "skills")
     private List<String> skills;
 
-    @NotNull
-    private Map<String, String> taskDescription;
+    @ElementCollection
+    @CollectionTable(name="task_description", joinColumns=@JoinColumn(name="task_id"))
+    @MapKeyColumn(name="description_key")
+    @Column(name="description_value")
+    private Map<String, String> taskDescription = new LinkedHashMap<>();
 
     @NotNull
     private Integer timeToComplete;
